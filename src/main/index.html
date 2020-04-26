@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CSV Merger</title>
+    <link rel="icon" type="image/png" href="img/icon.png">
+    <link rel="stylesheet" href="css/lib/bootstrap.css">
+    <link rel="stylesheet" href="css/lib/handsontable.full.css">
+    <link rel="stylesheet" href="css/custon.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row mb-3 mt-4">
+            <div class="offset-2 col-4 border-right">
+                <h5>First CSV (first file)</h5>
+                <form class="mb-3">
+                    <div class="form-group">
+                        <label for="cuotes1" class="pr-2 m-0">Cuotes</label>
+                        <input type="text" id="cuotes1" class="form-control" value='"'>
+                    </div>
+                    <div class="form-group">
+                        <label for="delimiter1" class="pr-2 m-0">Delimiter</label>
+                        <input type="text" id="delimiter1" class="form-control" value=",">
+                    </div>
+                </form>
+                <form class="mb-3">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="csv1" accept=".csv" required>
+                        <label class="custom-file-label" for="csv1">Upload a CSV 1:</label>
+                    </div>
+                </form>
+                <div class="form-group text-center">
+                    <button type="button" id="parse1" class="btn btn-primary">Load CSV</button>
+                </div>
+            </div>
+            <div class="col-4">
+                <h5>CSV to bind (second file)</h5>
+                <form class="mb-3">
+                    <div class="form-group">
+                        <label for="cuotes2" class="pr-2 m-0">Cuotes</label>
+                        <input type="text" id="cuotes2" class="form-control" value='"'>
+                    </div>
+                    <div class="form-group">
+                        <label for="delimiter2" class="pr-2 m-0">Delimiter</label>
+                        <input type="text" id="delimiter2" class="form-control" value=",">
+                    </div>
+                </form>
+                <form class="mb-3">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="csv2" accept=".csv" required>
+                        <label class="custom-file-label" for="csv2">Upload a CSV 2:</label>
+                    </div>
+                </form>
+                <div class="form-group text-center">
+                    <button type="button" id="parse2" class="btn btn-primary">Load CSV</button>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="offset-1 col-5 border-right">
+                <div id="parsed_csv1" class="parsed_csv"></div>
+            </div>
+            <div class="col-5">
+                <div id="parsed_csv2" class="parsed_csv"></div>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="offset-1 col-3">
+                <div class="form-group">
+                    <label for="primary1" class="pr-2 m-0">Primary key (first file)</label>
+                    <select id="primary1" class="custom-select"></select>
+                    <small>column to match the second file to link</small>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="columns" class="pr-2 m-0">Columns to add to the second file</label>
+                    <select id="columns" class="custom-select" multiple></select>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="form-group">
+                    <label for="primary2" class="pr-2 m-0">Primary key (file to bind)</label>
+                    <select id="primary2" class="custom-select"></select>
+                    <small>column to match the first file to link</small>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group text-right">
+                    <button type="button" id="merge" class="btn btn-primary">Merge CSV</button>
+                 </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group text-left">
+                    <button type="button" id="download" class="btn btn-primary">Download CSV</button>
+                 </div>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="offset-1 col-10">
+                <div id="csv" class="csv"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/lib/jquery.min.js"></script>
+    <script src="js/lib/bootstrap.min.js"></script>
+    <script src="js/lib/papaparse.min.js"></script>
+    <script src="js/lib/handsontable.full.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
