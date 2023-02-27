@@ -5,8 +5,8 @@ Load your csv files, choose the columns that must match and choose the columns t
 
 ### Downloads
 #### Windows installer
-#### https://github.com/enigmoes/CSVMerger/releases/download/1.0/windows_setup.exe
+#### https://github.com/enigmoes/CSVMerger/releases/download/1.0.1/CSVMerger.exe
 #### Windows portable
-#### https://github.com/enigmoes/CSVMerger/releases/download/1.0/windows_x64.zip
+#### https://github.com/enigmoes/CSVMerger/releases/download/1.0.1/CSVMerger_portable.exe
 #### Macos version
-#### https://github.com/enigmoes/CSVMerger/releases/download/1.0/macos.zip
+#### https://github.com/enigmoes/CSVMerger/releases/download/1.0.1/csvmerger-darwin-x64.zip
