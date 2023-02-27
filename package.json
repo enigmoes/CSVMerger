@@ -1,20 +1,37 @@
 {
   "name": "csvmerger",
   "version": "1.0.0",
-  "description": "",
-  "main": "src/index.js",
+  "description": "Merge Multiple CSV Files",
+  "main": "index.js",
   "scripts": {
-    "start": "electron src/index.js",
-    "pack:osx": "electron-packager . --asar --no-prune --out=dist/osx --platform=darwin --arch=x64 --icon=src/main/img/icon.icns",
-    "pack:win32": "electron-packager . --asar --no-prune --out=dist/windows --platform=win32 --arch=ia32",
-    "pack:win64": "electron-packager . --asar --no-prune --out=dist/windows --platform=win32 --arch=x64 --app-version=1.0 --icon=src/main/img/icon.ico"
+    "start": "electron .",
+    "dist": "electron-builder",
+    "pack:osx": "electron-packager . --asar --no-prune --out=dist/osx --platform=darwin --arch=x64 --app-version=1.0 --icon=assets/img/icon.icns",
+    "pack:win32": "electron-packager . --asar --no-prune --out=dist/windows --platform=win32 --arch=ia32 --app-version=1.0 --icon=assets/img/icon.ico",
+    "pack:win64": "electron-packager . --asar --no-prune --out=dist/windows --platform=win32 --arch=x64 --app-version=1.0 --icon=assets/img/icon.ico"
   },
   "keywords": [],
-  "author": "enigmo",
+  "author": "Enigmo",
   "license": "ISC",
-  "dependencies": {
-    "electron": "^8.2.3",
-    "electron-packager": "^14.2.1",
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.70",
+    "electron": "^23.1.1",
+    "electron-builder": "^22.10.3",
+    "electron-packager": "^17.1.0",
     "electron-reload": "^1.5.0"
+  },
+  "build": {
+    "productName": "CSVMerger",
+    "appId": "enigmo.CSVMerge",
+    "mac": {
+      "icon": "assets/img/icon.icns"
+    },
+    "win": {
+      "target": "portable",
+      "icon": "assets/img/icon.ico"
+    },
+    "portable": {
+      "artifactName": "csvmerger_portable.exe"
+    }
   }
 }

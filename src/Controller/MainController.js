@@ -1,16 +1,16 @@
 $(document).ready(function() {
-	// Objeto inicial
-	Init.init();
+	// Objeto main
+	Main.init();
 });
 
 // Objeto Init
-const Init = {
+const Main = {
 	parsed1: [],
 	parsed2: [],
 	csv: null,
 	init: function() {
 		// Iniciamos eventos
-		Init.events();
+		Main.events();
 	},
 	events: function() {
 		// Parseamos primer CSV
@@ -23,16 +23,16 @@ const Init = {
 					quotes: cuotes,
 					delimiter: delimiter,
 					complete: function(results) {
-						Init.parsed1 = Init.returnArray(results);
-						let table = new Handsontable(document.querySelector("#parsed_csv1"), Init.displayTable(Init.parsed1));
-						let cols = Init.getColumns(table.getColHeader());
+						Main.parsed1 = Main.returnArray(results);
+						let table = new Handsontable(document.querySelector("#parsed_csv1"), Main.displayTable(Main.parsed1));
+						let cols = Main.getColumns(table.getColHeader());
 						$('#primary1').html(cols);
 						$('#columns').html(cols);
 					}
 				},
 				before: function(file, inputElem) {
 					$("#parsed_csv1").html(
-						'<div class="text-center"><img src="../main/img/loading.gif" alt="loading..."></div>'
+						'<div class="text-center"><img src="../../../assets/img/loading.gif" alt="loading..."></div>'
 					);
 					// console.log("Parsing file...", file);
 				},
@@ -54,15 +54,15 @@ const Init = {
 					quotes: cuotes,
 					delimiter: delimiter,
 					complete: function(results) {
-						Init.parsed2 = Init.returnArray(results);
-						let table = new Handsontable(document.querySelector("#parsed_csv2"), Init.displayTable(Init.parsed2));
-						let cols = Init.getColumns(table.getColHeader());
+						Main.parsed2 = Main.returnArray(results);
+						let table = new Handsontable(document.querySelector("#parsed_csv2"), Main.displayTable(Main.parsed2));
+						let cols = Main.getColumns(table.getColHeader());
 						$('#primary2').html(cols);
 					}
 				},
 				before: function(file, inputElem) {
 					$("#parsed_csv2").html(
-						'<div class="text-center"><img src="../main/img/loading.gif" alt="loading..."></div>'
+						'<div class="text-center"><img src="../../../assets/img/loading.gif" alt="loading..."></div>'
 					);
 					// console.log("Parsing file...", file);
 				},
@@ -76,12 +76,12 @@ const Init = {
 		});
 		// Merge option
 		$('#merge').on('click', function () {
-			Init.mergeCSV();
+			Main.mergeCSV();
 		});
 		// Descargar csv
 		$('#download').on('click', function () {
-			let data = Init.csv.getData();
-			Init.download(data);
+			let data = Main.csv.getData();
+			Main.download(data);
 		});
 	},
 	returnArray: function (results) {
@@ -129,22 +129,22 @@ const Init = {
 		let primary1 = $('#primary1').val();
 		let primary2 = $('#primary2').val();
 		let columns = $('#columns').val();
-		if (Init.parsed1.length > 0 && Init.parsed2.length > 0) {
-			for (item2 in Init.parsed2) {
-				let key2 = Init.parsed2[item2][primary2];
-				for (item1 in Init.parsed1) {
-					let key1 = Init.parsed1[item1][primary1];
+		if (Main.parsed1.length > 0 && Main.parsed2.length > 0) {
+			for (item2 in Main.parsed2) {
+				let key2 = Main.parsed2[item2][primary2];
+				for (item1 in Main.parsed1) {
+					let key1 = Main.parsed1[item1][primary1];
 					if (key2 === key1) {
 						for (col in columns) {
-							let keys = Object.keys(Init.parsed2[item2]);
-							Init.parsed2[item2][keys.length] = Init.parsed1[item1][columns[col]];
+							let keys = Object.keys(Main.parsed2[item2]);
+							Main.parsed2[item2][keys.length] = Main.parsed1[item1][columns[col]];
 						}
 					}
 				}
 			}
 		}
 		// Print on table
-		Init.csv = new Handsontable(document.querySelector("#csv"), Init.displayTable(Init.parsed2));
+		Main.csv = new Handsontable(document.querySelector("#csv"), Main.displayTable(Main.parsed2));
 	},
 	download: function (data) {
 		// Crear CSV array
